@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!--Crea dos documentos llamados respectivamente
+color1.html y color2.php.
+En el primero de ellos incluye un formulario en el
+que -mediante un menú de opciones– se pueda
+elegir uno de entre cinco colores (especifica como
+value el código hexadecimal de cada uno de ellos).
+Al enviar los datos, deberá cargarse la página
+color2.php con el color de fondo correspondiente a
+la opción seleccionada en el formulario-->
+
+  <!--<form action="color2.php" method="POST">-->
+  <form method="GET" action="color2.php">
+  <p>elegir un color</p>
+  <!--<h3>opcion 1: <input type="radio" name="color" value="#FF5733"></h3>
+<h3>opcion 2: <input type="radio" name="color" value="#FF5733"></h3>-->
+  <select name="color">
+    <option value="#FF5733">opcion 1:</option>
+    <option value="#FF33CE">opcion 2:</option>
+    <option value="#33FF68">opcion 3:</option>
+  </select>
+  <input type="submit" name="enviar">
+  </form>
+</body>
+
+</html>
