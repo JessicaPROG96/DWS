@@ -8,14 +8,19 @@ $num = rand(0,5);
 $operador=rand(1,10);
 echo "<p>el numero es: $numero</p><br>"; 
 
-    do{
+   /* do{
         if($numero == 0){
         echo "no tiene acceso";
         }
         break; 
         $numero++;                               
-    }while($numero>0);    
+    }while($numero==0); 
+    */   
     switch ($numero) {
+        case 0: 
+            echo "no tiene acceso";
+            $numero = rand(0,5);
+             break;
         case 1:
             echo "Bienvenido"; 
             break;
@@ -30,15 +35,16 @@ echo "<p>el numero es: $numero</p><br>";
                 echo "$operador x $i = ".$operador*$i."</br>";
             } 
             break;
-        case 4:
-            echo '<table
-            <tr>
-                <td><img src="/DWS/f.png" width="80" heigth="80"> </td>
-                <td><img src="/DWS/f1.jpg" width="80" heigth="80"> </td>
-                <td><img src="/DWS/f2.jpg" width="80" heigth="80"> </td>
-                <td><img src="/DWS/f3.jpg" width="80" heigth="80"> </td>
-            </tr>
-            </table>';
+        case 4:    
+             $imagenes = array('f.png','f1.jpg','f2.jpg','f3.jpg','fp.jpg'); 
+            $elementos = count($imagenes); 
+            echo "<table>";
+            for($i=0;$i<$elementos;$i++){
+                echo "<tr>"; 
+                    echo "<td>".'<img src="'.$imagenes[$i].'" width=70/>'."</td>";
+                echo "</tr>";  
+            }
+            echo "</table>";
             break;
         case 5:
             $valorX = 4; 
