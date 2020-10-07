@@ -36,6 +36,13 @@
         echo "Temas de interes $tema <br>";
         }
         echo "Sus aficiones $aficiones <br>";
+
+        echo '
+        <form action="output.php" method="POST">
+        <h4>Confirme su infromacion</h4>
+        <input type="button" name="confirmacion" value="Confirmar">  
+         </form>';
+
     ?>
 
     
