@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 class RutasController extends Controller
 {
+    //funciona como controlador del catalogo
     public function index(){
         return view('catalog.index');
     }
