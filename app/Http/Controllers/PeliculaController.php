@@ -10,8 +10,10 @@ class PeliculaController extends Controller
     //funciona como controlador principal, home 
     public function __invoke()
     {
-        return view('logout');
+        // return view('logout');
+        return redirect()->action([RutasController::class, 'index']);
     }
+    
     
 }
 

@@ -23,9 +23,9 @@ Route::get('catalog', [RutasController::class, 'index']);
 
 Route::get('catalog/create', [RutasController::class, 'create']);
 
-Route::get('catalog/edit/{id}', [RutasController::class, 'edit']);
+Route::get('catalog/edit/{key}', [RutasController::class, 'edit']);
 
-Route::get('catalog/show/{id}', [RutasController::class, 'show']);
+Route::get('catalog/show/{key}', [RutasController::class, 'show']);
 
 
 
