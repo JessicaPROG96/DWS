@@ -13,17 +13,22 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+//binevenida general
 Route::get('/', function () {
-    return view('welcome');
+    return view('layouts.master');
 });
-Route::get('/tareas', [TaskController::class, 'index']);
-
+//mostrar todas las tares php 
+Route::get('/tareas', [TaskController::class, 'inicio']);
+//crear una nueva tarea
+Route::post('create', [TaskController::class, 'store']);
+Route::get('/tareas/create', [TaskController::class, 'crear']);
+//filtrar tareas, muestra según id seleccionado
+Route::get('/tareas//{id}', [TaskController::class, 'show']);
+//modificar una tarea
 Route::put('/tareas/actualizar', [TaskController::class, 'update']);
-
-Route::post('/tareas/guardar', [TaskController::class, 'store']);
-
+//borrar una tarea
 Route::delete('/tareas/borrar/{id}', [TaskController::class, 'destroy']);
+//coge los datos de la base de datos 
+Route::get('/datos', [TaskController::class, 'index']);
 
-Route::get('/tareas/buscar', [TaskController::class, 'show']);
 

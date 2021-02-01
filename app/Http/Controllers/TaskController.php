@@ -12,24 +12,39 @@ class TaskController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function inicio(){
+        $task = Task::all();
+        return view('gesTareas.inicio')->with('tareas',$task);
+        // return $task;
+
+        //     // Devolverá todas las observaciones
+        //       $observaciones = Formularios::select('nombre','apellido')->where('nombre','like','S');
+        //       return view('partes.observaciones')->with('formularios', $observaciones);
+          
+        // return view('gesTareas.inicio');
+    }
+    //crear una tarea
+     /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function crear()
     {
+        return view('gesTareas.crearTarea');
+    }
+
+
+    
+    //trae los todas las tareas
+     public function index(Request $request){
         //
         $task = Task::all();
         return $task;
 
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
+   
     /**
      * Store a newly created resource in storage.
      *
@@ -39,12 +54,33 @@ class TaskController extends Controller
     public function store(Request $request)
     {
         //
-        $task = new Task();
-        $task->name = $request->name;
-        $task->description = $request->description;
-        $task->content = $request->content;
+        // $task = new Task();
+        // $task->name = $request->name;
+        // $task->description = $request->description;
+        // $task->content = $request->content;
+        // $task->save();
 
-        $task->save();
+
+        $task = $request->all();
+        if($request->hasfile('imagen')){
+            
+              $image =$request->file('imagen');
+              var_dump($image);
+              $nombre = $image->getClientOriginalName(); 
+              $image->move('img/fotosMujeres', $nombre);
+            echo "\n\n\n";
+              var_dump($image);
+              $task["imagen"]=$nombre;
+
+            //   $path = $request->imagen->storeAs($image, $nombre); 
+            //   $data['imagen']=$path;
+            //   $path=Storage::disk('public')->put($nombre, $image);
+         
+        }
+        // print_r ($data);
+        Task::create($task);
+
+        return redirect()->route('/tareas')->with('success', 'Mujer agregada correctamente', $task);
 
     }
 

@@ -9,9 +9,7 @@
         <link href="{{asset('css/app.css')}}" rel="stylesheet"> 
     </head>
     <body>
-            <div id="app" class="content">
-                <example-component></example-component><!--Añadimos nuestro componente vuejs-->
-            </div>
+           
         <script src="{{asset('js/app.js')}}"></script> 
     </body>
 </html>

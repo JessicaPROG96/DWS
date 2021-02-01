@@ -1978,7 +1978,7 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     getTasks: function getTasks() {
       var me = this;
-      var url = 'tareas';
+      var url = 'datos';
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(url).then(function (response) {
         me.arrayTask = response.data;
       })["catch"](function (error) {

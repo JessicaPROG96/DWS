@@ -67,7 +67,7 @@
         methods:{
             getTasks(){
                 let me = this; 
-                let url = 'tareas'
+                let url = 'datos'
                 axios.get(url).then(function (response){
                     me.arrayTask = response.data;
                 })
