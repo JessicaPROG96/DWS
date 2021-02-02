@@ -65,9 +65,6 @@
             <div class="col-2">
                 <button type="reset" class="btn btn-outline-light box">Limpiar</button>
             </div>
-            {{-- <div class="col">
-            <button type="button" class="btn btn-outline-light">Volver</button>
-            </div> --}}
             <button class="btn col-3 btn-outline-light box" type="submit" id="submit">Enviar</button>
         </div>
  

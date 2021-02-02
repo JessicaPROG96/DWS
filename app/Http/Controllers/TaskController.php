@@ -122,6 +122,7 @@ class TaskController extends Controller
     $notaActualizada->description = $request->description;
     $notaActualizada->save();
     // return back()->with('mensaje', 'Nota editada!');
+    return redirect('/tareas')->with('mensaje', 'acutalizada correctamente');
 
     }
 

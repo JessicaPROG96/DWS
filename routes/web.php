@@ -29,7 +29,7 @@ Route::get('/tareas/show/{key}', [TaskController::class, 'show'])->name('show');
 //modificar una tarea
 Route::get('/tareas/actualizar/{key}', [TaskController::class, 'update'])->name('update');
 //editar una nueva tarea
-Route::post('/edit', [TaskController::class, 'edit'])->name('edit');
+Route::put('/edit/{id}', [TaskController::class, 'edit'])->name('edit');
 //borrar una tarea
 Route::delete('/tareas/borrar/{id}', [TaskController::class, 'destroy']);
 //coge los datos de la base de datos 

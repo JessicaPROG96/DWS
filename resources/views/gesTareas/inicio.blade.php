@@ -3,6 +3,13 @@
 @section('content')
 <div class="mx-auto mt-5 col-10">
 <h1>Listado de mujeres</h1>
+
+@if (session('mensaje'))
+<div class="alert alert-success fade show">
+    {{ session('mensaje') }}
+</div>
+@endif
+
 <table class="table table-bordered table-dark" id="tableObserv">
     <thead>
       <tr>
