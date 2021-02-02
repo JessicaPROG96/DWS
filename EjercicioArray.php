@@ -2,7 +2,7 @@
 <body>
 <?php 
 //pedir el numero al azar 
-rand(1,10)
+rand(1,10);
 //crear un array 
 
 
