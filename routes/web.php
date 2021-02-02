@@ -20,10 +20,11 @@ Route::get('/', function () {
 //mostrar todas las tares php 
 Route::get('/tareas', [TaskController::class, 'inicio']);
 //crear una nueva tarea
-Route::post('create', [TaskController::class, 'store']);
+Route::post('/create', [TaskController::class, 'store']);
+
 Route::get('/tareas/create', [TaskController::class, 'crear']);
 //filtrar tareas, muestra según id seleccionado
-Route::get('/tareas//{id}', [TaskController::class, 'show']);
+Route::get('/tareas/show/{key}', [TaskController::class, 'show']);
 //modificar una tarea
 Route::put('/tareas/actualizar', [TaskController::class, 'update']);
 //borrar una tarea

@@ -4,6 +4,7 @@
 
 {{-- nuevo --}}
 <form enctype="multipart/form-data" class="pt-4" method="POST" action="{{url('create')}}">
+    {{-- <form enctype="multipart/form-data" class="pt-4" method="POST" action="{{url('create')}}"> --}}
     
     @csrf 
     <div class="form-group cajas col-4 mx-auto pt-auto">

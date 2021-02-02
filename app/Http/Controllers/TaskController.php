@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Http\Controllers\DB;
 use App\Models\Task;
 use Illuminate\Http\Request;
 
@@ -62,14 +62,15 @@ class TaskController extends Controller
 
 
         $task = $request->all();
+
         if($request->hasfile('imagen')){
             
               $image =$request->file('imagen');
-              var_dump($image);
+            //   var_dump($image);
               $nombre = $image->getClientOriginalName(); 
               $image->move('img/fotosMujeres', $nombre);
-            echo "\n\n\n";
-              var_dump($image);
+            //     echo "\n\n\n";
+            //   var_dump($image);
               $task["imagen"]=$nombre;
 
             //   $path = $request->imagen->storeAs($image, $nombre); 
@@ -79,8 +80,7 @@ class TaskController extends Controller
         }
         // print_r ($data);
         Task::create($task);
-
-        return redirect()->route('/tareas')->with('success', 'Mujer agregada correctamente', $task);
+        return view('gesTareas.inicio');
 
     }
 
@@ -90,13 +90,31 @@ class TaskController extends Controller
      * @param  \App\Models\Task  $task
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request)
-    {
-        //
-        $task = Task::findOrFail($request->id);
-        return $task;
+    public function show(Request $request){
+        $id = $request->id;
+        $name = $request->name;
+        $description = $request->description;
+        $content = $request->content;
+        
+        // $user = DB::select('select * from users where active = ?', [1]);
 
+        // echo $user->name;
+        // DB::update('update mujeres set fechaNacimiento = ?, zonaGeografica = ?, descripcion = ? where id = ?',[$fecha, $zona, $desc, $id]);
+        // $arrayMujer = DB::table('mujeres')->where('id',[$id])->get();
+        // return $arrayMujer;
+        //
+        // $task = Task::findOrFail($request->id);
+        // return $task;
+
+        
+        return view('gesTareas.show');
+
+
+        // return view('catalog.show',['arrayPeliculas'=> $this->arrayPeliculas[$key]]);
     }
+
+
+    
 
     /**
      * Show the form for editing the specified resource.
