@@ -31,7 +31,7 @@ Route::get('/tareas/actualizar/{key}', [TaskController::class, 'update'])->name(
 //editar una nueva tarea
 Route::put('/edit/{id}', [TaskController::class, 'edit'])->name('edit');
 //borrar una tarea
-Route::delete('/tareas/borrar/{id}', [TaskController::class, 'destroy']);
+Route::delete('/tareas/borrar/{id}', [TaskController::class, 'destroy'])->name('delete');
 //coge los datos de la base de datos 
 // Route::get('/datos', [TaskController::class, 'index']);
 

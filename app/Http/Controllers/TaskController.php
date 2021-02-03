@@ -5,49 +5,21 @@ use App\Http\Controllers\DB;
 use App\Models\Task;
 use Illuminate\Http\Request;
 
-class TaskController extends Controller
-{
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+class TaskController extends Controller{
     //recoge todos los datos de la base de datos y los muestra en inicio
     public function inicio(){
         $task = Task::all();
         return view('gesTareas.inicio')->with('task', $task);
     } 
-     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     //crear una tarea , envia a la vista `para llenar el formulario 
     public function crear(){
         return view('gesTareas.crearTarea');
     }
-
-
-    //trae los todas las tareas
-    //  public function index(Request $request){
-    //     //
-    //     $task = Task::all();
-    //     return $task;
-
-    // }
-
-   
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request){
       //recoge los datos del formulario y los guarda en la BD 
-
       //valida los campos
         $task = $request->all();
+        // $task = new Task();
         $request->validate([
             'name' => 'required',
             'description' => 'required'
@@ -55,30 +27,12 @@ class TaskController extends Controller
         //valida la imagen 
         if($request->hasfile('imagen')){
               $image =$request->file('imagen');
-            //   var_dump($image);
               $nombre = $image->getClientOriginalName(); 
               $image->move('img/fotosMujeres', $nombre);
-            //     echo "\n\n\n";
-            //   var_dump($image);
-              $task["imagen"]=$nombre;
-
-            //   $path = $request->imagen->storeAs($image, $nombre); 
-            //   $data['imagen']=$path;
-            //   $path=Storage::disk('public')->put($nombre, $image);
-         
+            $task["imagen"]=$nombre;
         }
-        // print_r ($data);
         Task::create($task);
-        return back()->with('mensaje', 'tarea agregada');
-        return redirect('/tareas');
-
-        // return view('gesTareas.inicio');
-          //
-        // $task = new Task();
-        // $task->name = $request->name;
-        // $task->description = $request->description;
-        // $task->content = $request->content;
-        // $task->save();
+        return redirect('/tareas')->with('mensaje', 'guardada correctamente');
     }
 
     /**
@@ -104,26 +58,29 @@ class TaskController extends Controller
         //enviar los datos a la vista edit
         $tareaUpdate = Task::findOrFail($id);
         return view('gesTareas.edit', compact('tareaUpdate'));
-         //
-        // $task = Task::findOrFail($request->id);
-
-        // $task->name = $request->name;
-        // $task->description = $request->description;
-        // $task->content = $request->content;
-
-        // $task->save();
-        // return $task;
-    }
-    public function edit(Request $request, $id)
-    {
-        //recoge los datos acutalizados y los guarda en la BD
+        }
+    //recoge los datos acutalizados y los guarda en la BD
+    public function edit(Request $request, $id){
+       
     $notaActualizada = Task::find($id);
     $notaActualizada->name = $request->name;
     $notaActualizada->description = $request->description;
-    $notaActualizada->save();
-    // return back()->with('mensaje', 'Nota editada!');
-    return redirect('/tareas')->with('mensaje', 'acutalizada correctamente');
+    $notaActualizada->content = $request->content;
 
+    if($request->hasFile('imagen')){
+        $image =$request->file('imagen');
+        $nombre = $image->getClientOriginalName(); 
+        $image->move('img/fotosMujeres', $nombre);
+// esta es la línea que faltaba. Llamo a la foto del modelo y le asigno la foto recogida por el formulario de actualizar.  
+        $notaActualizada->imagen=$nombre;      
+      }
+     
+    // if($notaActualizada->isClean()){
+    // return ('mensaje','At least one new value of a field is needed to update');
+    // }
+    // $notaActualizada->update($request->all());
+    $notaActualizada->save();
+    return redirect('/tareas')->with('mensaje', 'acutalizada correctamente');
     }
 
     /**
@@ -134,9 +91,9 @@ class TaskController extends Controller
      */
     public function destroy(Request $request)
     {
-        //
         $task = Task::destroy($request->id);
-        return $task;
+        return redirect('/tareas')->with('mensaje', 'borrado correctamente', $task);
+        // return $task;
 
     }
 }
