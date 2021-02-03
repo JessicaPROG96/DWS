@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\Task;
+use App\Models\Nota;
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -57,5 +58,12 @@ class DatabaseSeeder extends Seeder
         $task5->content='hola Alice';
         $task5->imagen='Lizabeth_Cohen.jpg';
         $task5->save();
+
+
+        $nota = new Nota();
+        $nota->mensaje= 'hola';
+        $nota->id_tareas=2;
+        $nota->email='tarea@gmail.com';
+        $nota->save();
     }
 }
